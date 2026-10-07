@@ -17,7 +17,12 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
 
   // state untuk dropdown
   String _selectedCategory = 'Makanan';
-  final List<String> _categories = ['Makanan', 'Transportasi', 'Hiburan', 'Lainnya'];
+  final List<String> _categories = [
+    'Makanan',
+    'Transportasi',
+    'Hiburan',
+    'Lainnya',
+  ];
 
   @override
   void dispose() {
@@ -28,7 +33,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   }
 
   @override
-  Widget build(BuildContext context){
+  Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Catat Transaksi Baru"),
@@ -52,7 +57,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   prefixIcon: Icon(Icons.title),
                 ),
                 validator: (value) {
-                  if(value == null || value.isEmpty) {
+                  if (value == null || value.isEmpty) {
                     return "Judul transaksi tidak boleh kosong.";
                   }
                   return null;
@@ -70,10 +75,10 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   prefixIcon: Icon(Icons.attach_money),
                 ),
                 validator: (value) {
-                  if(value == null || value.isEmpty) {
+                  if (value == null || value.isEmpty) {
                     return "Nominal wajib diisi.";
                   }
-                  if(int.tryParse(value) == null) {
+                  if (int.tryParse(value) == null) {
                     return "Harus berupa angka bulat yang valid";
                   }
                   return null;
@@ -95,7 +100,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     child: Text(category),
                   );
                 }).toList(),
-                onChanged: (String? newValue){
+                onChanged: (String? newValue) {
                   setState(() {
                     _selectedCategory = newValue!;
                   });
@@ -112,7 +117,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 ),
                 onPressed: () {
                   // jalankan validasi
-                  if(_formKey.currentState!.validate()) {
+                  if (_formKey.currentState!.validate()) {
                     // jika lolos validasi, tampilkan pop-up SnackBar sukses
                     ScaffoldMessenger.of(context).showSnackBar(
                       SnackBar(
@@ -128,7 +133,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                   "Simpan Transaksi",
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
                 ),
-              )
+              ),
             ],
           ),
         ),
